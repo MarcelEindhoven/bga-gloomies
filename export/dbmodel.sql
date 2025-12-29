@@ -1,7 +1,7 @@
 
 -- ------
 -- BGA framework: Gregory Isabelli & Emmanuel Colin & BoardGameArena
--- gloomies implementation : © <Your name here> <Your email address here>
+-- gloomies implementation : © Marcel van Nieuwenhoven marcel.eindhoven@hotmail.com
 -- 
 -- This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
 -- See http://en.boardgamearena.com/#!doc/Studio for more information.
@@ -33,3 +33,48 @@
 -- Example 2: add a custom field to the standard "player" table
 -- ALTER TABLE `player` ADD `player_my_custom_field` INT UNSIGNED NOT NULL DEFAULT '0';
 
+-- ALTER TABLE `bga_globals` ADD `board_rotation` INT UNSIGNED NOT NULL DEFAULT '0';
+-- ALTER TABLE `bga_globals` ADD `board_side` INT UNSIGNED NOT NULL DEFAULT '0';
+
+ALTER TABLE `player` ADD `player_helpers` INT UNSIGNED NOT NULL DEFAULT '1';
+ALTER TABLE `player` ADD `player_stardust` INT UNSIGNED NOT NULL DEFAULT '0';
+
+-- Flowers
+CREATE TABLE IF NOT EXISTS `flower` (
+  `card_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `card_type` varchar(16) NOT NULL,
+  `card_type_arg` int(11) NOT NULL,
+  `card_location` varchar(16) NOT NULL,
+  `card_location_arg` int(11) NOT NULL,
+  PRIMARY KEY (`card_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- Bonus tiles
+CREATE TABLE IF NOT EXISTS `bonus` (
+  `card_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `card_type` varchar(16) NOT NULL,
+  `card_type_arg` int(11) NOT NULL,
+  `card_location` varchar(16) NOT NULL,
+  `card_location_arg` int(11) NOT NULL,
+  PRIMARY KEY (`card_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- Order cards
+CREATE TABLE IF NOT EXISTS `order` (
+  `card_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `card_type` varchar(16) NOT NULL,
+  `card_type_arg` int(11) NOT NULL,
+  `card_location` varchar(16) NOT NULL,
+  `card_location_arg` int(11) NOT NULL,
+  PRIMARY KEY (`card_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- Flower cards
+CREATE TABLE IF NOT EXISTS `cards` (
+  `card_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `card_type` varchar(16) NOT NULL,
+  `card_type_arg` int(11) NOT NULL,
+  `card_location` varchar(16) NOT NULL,
+  `card_location_arg` int(11) NOT NULL,
+  PRIMARY KEY (`card_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

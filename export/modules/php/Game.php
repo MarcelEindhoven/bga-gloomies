@@ -2,7 +2,7 @@
 /**
  *------
  * BGA framework: Gregory Isabelli & Emmanuel Colin & BoardGameArena
- * gloomies implementation : © <Your name here> <Your email address here>
+ * gloomies implementation : © Marcel van Nieuwenhoven marcel.eindhoven@hotmail.com
  *
  * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
  * See http://en.boardgamearena.com/#!doc/Studio for more information.
@@ -25,7 +25,8 @@ class Game extends \Bga\GameFramework\Table
 {
     public static array $CARD_TYPES;
 
-    public PlayerCounter $playerEnergy;
+    public PlayerCounter $player_helpers;
+    public PlayerCounter $player_stardust;
 
     /**
      * Your global variables labels:
@@ -41,7 +42,8 @@ class Game extends \Bga\GameFramework\Table
         parent::__construct();
         $this->initGameStateLabels([]); // mandatory, even if the array is empty
 
-        $this->playerEnergy = $this->counterFactory->createPlayerCounter('energy');
+        $this->player_helpers = $this->counterFactory->createPlayerCounter('helpers');
+        $this->player_stardust = $this->counterFactory->createPlayerCounter('stardust');
 
         self::$CARD_TYPES = [
             1 => [
@@ -136,7 +138,8 @@ class Game extends \Bga\GameFramework\Table
         $result["players"] = $this->getCollectionFromDb(
             "SELECT `player_id` `id`, `player_score` `score` FROM `player`"
         );
-        $this->playerEnergy->fillResult($result);
+        $this->player_stardust->fillResult($result);
+        $this->player_stardust->fillResult($result);
 
         // TODO: Gather all information about current game situation (visible by player $current_player_id).
 
@@ -149,7 +152,8 @@ class Game extends \Bga\GameFramework\Table
      */
     protected function setupNewGame($players, $options = [])
     {
-        $this->playerEnergy->initDb(array_keys($players), initialValue: 2);
+        $this->player_stardust->initDb(array_keys($players), initialValue: 0);
+        $this->player_helpers->initDb(array_keys($players), initialValue: 0);
 
         // Set the colors of the players with HTML color code. The default below is red/green/blue/orange/brown. The
         // number of colors defined here must correspond to the maximum number of players allowed for the gams.
