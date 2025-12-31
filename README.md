@@ -1,5 +1,5 @@
 # bga-gloomies
-Boardgamearena implementation of gloomies
+Boardgamearena implementation of Gloomies
 
 ## GitHub
 git clone https://github.com/MarcelEindhoven/bga-gloomies.git

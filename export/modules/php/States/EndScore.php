@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Bga\Games\gloomies\States;
+namespace Bga\Games\Gloomies\States;
 
 use Bga\GameFramework\StateType;
-use Bga\Games\gloomies\Game;
+use Bga\Games\Gloomies\Game;
 
 const ST_END_GAME = 99;
 

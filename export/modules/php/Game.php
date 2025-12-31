@@ -2,7 +2,7 @@
 /**
  *------
  * BGA framework: Gregory Isabelli & Emmanuel Colin & BoardGameArena
- * gloomies implementation : © Marcel van Nieuwenhoven marcel.eindhoven@hotmail.com
+ * Gloomies implementation : © Marcel van Nieuwenhoven marcel.eindhoven@hotmail.com
  *
  * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
  * See http://en.boardgamearena.com/#!doc/Studio for more information.
@@ -16,9 +16,9 @@
  */
 declare(strict_types=1);
 
-namespace Bga\Games\gloomies;
+namespace Bga\Games\Gloomies;
 
-use Bga\Games\gloomies\States\PlayerTurn;
+use Bga\Games\Gloomies\States\PlayerTurn;
 use Bga\GameFramework\Components\Counters\PlayerCounter;
 
 class Game extends \Bga\GameFramework\Table

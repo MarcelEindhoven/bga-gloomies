@@ -1,15 +1,15 @@
 /**
  *------
  * BGA framework: Gregory Isabelli & Emmanuel Colin & BoardGameArena
- * gloomies implementation : © Marcel van Nieuwenhoven marcel.eindhoven@hotmail.com
+ * Gloomies implementation : © Marcel van Nieuwenhoven marcel.eindhoven@hotmail.com
  *
  * This code has been produced on the BGA studio platform for use on http://boardgamearena.com.
  * See http://en.boardgamearena.com/#!doc/Studio for more information.
  * -----
  *
- * gloomies.css
+ * Gloomies.css
  *
- * gloomies stylesheet
+ * Gloomies stylesheet
  *
  */
 
@@ -17,8 +17,8 @@
     This is the CSS stylesheet of your game User Interface.
     
     Styles defined on this file will be applied to the HTML elements you define in your
-    HTML template (gloomies_gloomies.tpl), and to HTML elements you create dynamically
-    (in gloomies.js).
+    HTML template (Gloomies_Gloomies.tpl), and to HTML elements you create dynamically
+    (in Gloomies.js).
     
     Usually, you are using CSS to:
     
