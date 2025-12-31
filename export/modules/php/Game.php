@@ -139,7 +139,7 @@ class Game extends \Bga\GameFramework\Table
             "SELECT `player_id` `id`, `player_score` `score` FROM `player`"
         );
         $this->player_stardust->fillResult($result);
-        $this->player_stardust->fillResult($result);
+        $this->player_helpers->fillResult($result);
 
         // TODO: Gather all information about current game situation (visible by player $current_player_id).
 
@@ -169,6 +169,7 @@ class Game extends \Bga\GameFramework\Table
                 addslashes($player["player_name"]),
                 addslashes($player["player_avatar"]),
             ]);
+            $this->player_helpers->set($player_id, $this->player_helpers->get($player_id) + 1000);
         }
 
         // Create players based on generic information.
@@ -183,7 +184,14 @@ class Game extends \Bga\GameFramework\Table
         );
 
         $this->reattributeColorsBasedOnPreferences($players, $gameinfos["player_colors"]);
+        // $this->loadPlayersBasicInfos(); does not work before this staement!
         $this->reloadPlayersBasicInfos();
+
+        $playersBasicInfos = $this->loadPlayersBasicInfos();
+
+        foreach ($playersBasicInfos as $player_id => $player) {
+            $this->player_stardust->set($player_id, $player['player_no'] + 0);
+        }
 
         // Init global values with their initial values.
 
@@ -198,7 +206,9 @@ class Game extends \Bga\GameFramework\Table
         // TODO: Setup the initial game situation here.
 
         // Activate first player once everything has been initialized and ready.
+        $this->player_stardust->set($this->getNextPlayerTable()[0], $this->player_stardust->get($player_id) + 10);
         $this->activeNextPlayer();
+        $this->player_helpers->set($this->getActivePlayerId(), $this->player_helpers->get($player_id) + 100);
 
         return PlayerTurn::class;
     }

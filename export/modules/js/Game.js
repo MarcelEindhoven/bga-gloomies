@@ -52,12 +52,22 @@ export class Game {
         Object.values(gamedatas.players).forEach(player => {
             // example of setting up players boards
             this.bga.playerPanels.getElement(player.id).insertAdjacentHTML('beforeend', `
-                <span id="energy-player-counter-${player.id}"></span> Energy
+                <span id="helpers-player-counter-${player.id}"></span> helpers
             `);
-            const counter = new ebg.counter();
-            counter.create(`energy-player-counter-${player.id}`, {
-                value: player.energy,
-                playerCounter: 'energy',
+            const helpers = new ebg.counter();
+            helpers.create(`helpers-player-counter-${player.id}`, {
+                value: player.helpers,
+                playerCounter: 'helpers',
+                playerId: player.id
+            });
+
+            this.bga.playerPanels.getElement(player.id).insertAdjacentHTML('beforeend', `
+                <span id="stardust-player-counter-${player.id}"></span> stardust
+            `);
+            const stardust = new ebg.counter();
+            stardust.create(`stardust-player-counter-${player.id}`, {
+                value: player.stardust,
+                playerCounter: 'stardust',
                 playerId: player.id
             });
 
