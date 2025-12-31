@@ -47,6 +47,11 @@ class Game extends \Bga\GameFramework\Table
         $this->player_helpers = $this->counterFactory->createPlayerCounter('helpers');
         $this->player_stardust = $this->counterFactory->createPlayerCounter('stardust');
 
+        $this->decks['flower'] = $this->deckFactory->createDeck('flower');
+        $this->decks['bonus'] = $this->deckFactory->createDeck('bonus');
+        $this->decks['order'] = $this->deckFactory->createDeck('order');
+        $this->decks['flower_card'] = $this->deckFactory->createDeck('flower_card');
+
         self::$CARD_TYPES = [
             1 => [
                 "card_name" => clienttranslate('Troll'), // ...
@@ -156,7 +161,14 @@ class Game extends \Bga\GameFramework\Table
     {
         $this->trace('setupNewGame');
         $this->trace(phpversion());
+
         NewGame\NewGame::create($this->decks)->setup_zombies($players, $this->tableOptions->get(100));
+
+        /**
+         * The board can rotate and turn for each game
+         */
+        $this->globals->set('board_rotation', bga_rand(0, 3));
+        $this->globals->set('board_flip', bga_rand(0, 1));
 
         $this->player_stardust->initDb(array_keys($players), initialValue: 0);
         $this->player_helpers->initDb(array_keys($players), initialValue: 0);

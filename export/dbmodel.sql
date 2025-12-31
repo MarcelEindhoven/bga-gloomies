@@ -33,13 +33,8 @@
 -- Example 2: add a custom field to the standard "player" table
 -- ALTER TABLE `player` ADD `player_my_custom_field` INT UNSIGNED NOT NULL DEFAULT '0';
 
--- ALTER TABLE `bga_globals` ADD `board_rotation` INT UNSIGNED NOT NULL DEFAULT '0';
--- ALTER TABLE `bga_globals` ADD `board_side` INT UNSIGNED NOT NULL DEFAULT '0';
-
-ALTER TABLE `player` ADD `player_helpers` INT UNSIGNED NOT NULL DEFAULT '1';
-ALTER TABLE `player` ADD `player_stardust` INT UNSIGNED NOT NULL DEFAULT '0';
-
 -- Flowers
+-- type 0 = no flower, type 1 = moon lily, type 2 = orbit flower, type 3 = sun thistle, type 4 = galaxy poppy
 CREATE TABLE IF NOT EXISTS `flower` (
   `card_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `card_type` varchar(16) NOT NULL,
@@ -70,7 +65,11 @@ CREATE TABLE IF NOT EXISTS `order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- Flower cards
-CREATE TABLE IF NOT EXISTS `cards` (
+-- type % 10 is first flower type, type / 10 is second flower type (0 = no flower)
+-- Location can be Deck, Market and player ID
+-- Location arg is unused for Deck, position in market for Market, and 0/1 for player ID
+-- 0 means in player's hand, 1 means planted
+CREATE TABLE IF NOT EXISTS `flower_card` (
   `card_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `card_type` varchar(16) NOT NULL,
   `card_type_arg` int(11) NOT NULL,
