@@ -23,10 +23,12 @@ use Bga\GameFramework\Components\Counters\PlayerCounter;
 
 class Game extends \Bga\GameFramework\Table
 {
-    public static array $CARD_TYPES;
+    protected array $decks = [];
 
     public PlayerCounter $player_helpers;
     public PlayerCounter $player_stardust;
+
+    public static array $CARD_TYPES;
 
     /**
      * Your global variables labels:
@@ -152,6 +154,10 @@ class Game extends \Bga\GameFramework\Table
      */
     protected function setupNewGame($players, $options = [])
     {
+        $this->trace('setupNewGame');
+        $this->trace(phpversion());
+        NewGame\NewGame::create($this->decks)->setup_zombies($players, $this->tableOptions->get(100));
+
         $this->player_stardust->initDb(array_keys($players), initialValue: 0);
         $this->player_helpers->initDb(array_keys($players), initialValue: 0);
 

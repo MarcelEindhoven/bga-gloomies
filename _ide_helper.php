@@ -2770,8 +2770,6 @@ namespace Bga\GameFramework\GameResult {
 }
 
 namespace {
-    exit("This file should not be included, only analyzed by your IDE");
-
     /**
      * Dummy value, for autocomplete.
      */

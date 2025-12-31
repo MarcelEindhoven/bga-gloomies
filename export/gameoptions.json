@@ -6,13 +6,13 @@
                 "name": "No Zombie players"
             },
             "1": {
-                "name": "1 Zombie player",
+                "name": "1 Zombie player"
             },
             "2": {
                 "name": "2 Zombie players"
             },
             "3": {
-                "name": "3 Zombie players",
+                "name": "3 Zombie players"
             }
         },
         "default": 1
