@@ -65,9 +65,9 @@ CREATE TABLE IF NOT EXISTS `order` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- Flower cards
--- type % 10 is first flower type, type / 10 is second flower type (0 = no flower)
--- Location can be Deck, Market and player ID
--- Location arg is unused for Deck, position in market for Market, and 0/1 for player ID
+-- type is first flower type, type_arg is second flower type (0 = no flower)
+-- Location can be deck, market and player ID
+-- Location arg is unused for deck, position in market for market, and 0/1 for player ID
 -- 0 means in player's hand, 1 means planted
 CREATE TABLE IF NOT EXISTS `flower_card` (
   `card_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
