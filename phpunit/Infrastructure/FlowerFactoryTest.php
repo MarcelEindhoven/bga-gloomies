@@ -26,7 +26,7 @@ class FlowerFactoryTest extends TestCase{
     public function test_flush_with_empty_definition() {
         // Arrange
         $expected_location = 'deck1';
-        $this->mock_cards->expects($this->exactly(1))->method('createCards')->with([]);
+        $this->mock_cards->expects($this->exactly(1))->method('createCards')->with([], $expected_location);
         // Act
         $this->sut->flush($expected_location);
         // Assert
