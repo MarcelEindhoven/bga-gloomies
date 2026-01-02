@@ -14,11 +14,11 @@ declare(strict_types=1);
 namespace Bga\Games\Gloomies\Infrastructure;
 
 #[\AllowDynamicProperties]
-class FlowerFactory {
+class BonusTileFactory {
     protected array $definitions = [];
 
-    static public function create($deck): FlowerFactory {
-        $object = new FlowerFactory();
+    static public function create($deck): BonusTileFactory {
+        $object = new BonusTileFactory();
         $object->set_deck($deck);
         return $object;
     }
@@ -27,11 +27,11 @@ class FlowerFactory {
         $this->deck = $deck;
     }
 
-    public function add($first_colour) {
-        $this->definitions[] = array( 'type' => $first_colour, 'type_arg' => 0, 'nbr' => 1);
+    public function add($purple, $turquoise) {
+        $this->definitions[] = array( 'type' => $purple, 'type_arg' => $turquoise, 'nbr' => 1);
     }
-    public function flush($location) {
-        $this->deck->createCards($this->definitions, $location);
+    public function flush() {
+        $this->deck->createCards($this->definitions);
         $this->definitions = [];
     }
 }
