@@ -16,6 +16,12 @@ namespace Bga\Games\Gloomies\NewGame;
 
 #[\AllowDynamicProperties]
 class FlowersNewGame {
+    const FLOWER_COUNTS = [
+        'moon_lily' => 18,
+        'orbit_flower' => 15,
+        'sun_thistle' => 15,
+        'galaxy_poppy' => 12,
+    ];
     static public function create($factory): FlowersNewGame {
         $object = new FlowersNewGame();
         $object->set_factory($factory);
@@ -24,6 +30,19 @@ class FlowersNewGame {
 
     public function set_factory($factory) : FlowersNewGame {
         $this->factory = $factory;
+        return $this;
+    }
+    public function setup(): FlowersNewGame {
+        // Create flowers
+        $type = 0;
+        foreach (self::FLOWER_COUNTS as $colour => $count) {
+            $type++;
+            for ($i = 0; $i < $count; $i++) {
+                $this->factory->add($type);
+            }
+            $this->factory->flush('deck' . $type);
+        }
+
         return $this;
     }
 }

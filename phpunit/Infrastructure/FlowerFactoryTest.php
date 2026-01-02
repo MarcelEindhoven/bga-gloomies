@@ -25,9 +25,10 @@ class FlowerFactoryTest extends TestCase{
 
     public function test_flush_with_empty_definition() {
         // Arrange
+        $expected_location = 'deck1';
         $this->mock_cards->expects($this->exactly(1))->method('createCards')->with([]);
         // Act
-        $this->sut->flush();
+        $this->sut->flush($expected_location);
         // Assert
     }
 
@@ -35,11 +36,12 @@ class FlowerFactoryTest extends TestCase{
         // Arrange
         $colour = 1;
         $expected_definition = array( 'type' => $colour, 'type_arg' => 0, 'nbr' => 1);
-        $this->mock_cards->expects($this->exactly(1))->method('createCards')->with([$expected_definition]);
+        $expected_location = 'deck1';
+        $this->mock_cards->expects($this->exactly(1))->method('createCards')->with([$expected_definition], $expected_location);
 
         // Act
         $this->sut->add($colour);
-        $this->sut->flush();
+        $this->sut->flush($expected_location);
         // Assert
     }
 }

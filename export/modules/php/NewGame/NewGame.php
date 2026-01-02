@@ -8,16 +8,17 @@
  * See http://en.boardgamearena.com/#!doc/Studio for more information.
  * -----
  *
- * Game.php
- *
- * This is the main file for your game logic.
- *
- * In this PHP file, you are going to defines the rules of the game.
  */
 declare(strict_types=1);
 
 namespace Bga\Games\Gloomies\NewGame;
 
+require_once("FlowersNewGame.php");
+
+include_once(__DIR__.'/../Infrastructure/Flower.php');
+use Bga\Games\Gloomies\Infrastructure\FlowerFactory;
+
+#[\AllowDynamicProperties]
 class NewGame {
     protected array $decks = [];
 
@@ -29,6 +30,13 @@ class NewGame {
 
     public function set_decks($decks) : NewGame {
         $this->decks = $decks;
+        $this->flowers = FlowersNewGame::create(FlowerFactory::create($this->decks['flower']));;
+        return $this;
+    }
+
+    public function setup_components() : NewGame {
+        $this->flowers->setup();
+
         return $this;
     }
 

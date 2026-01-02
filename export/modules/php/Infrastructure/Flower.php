@@ -31,8 +31,8 @@ class FlowerFactory {
     public function add($first_colour) {
         $this->definitions[] = array( 'type' => $first_colour, 'type_arg' => 0, 'nbr' => 1);
     }
-    public function flush() {
-        $this->deck->createCards($this->definitions);
+    public function flush($location) {
+        $this->deck->createCards($this->definitions, $location);
         $this->definitions = [];
     }
 }
