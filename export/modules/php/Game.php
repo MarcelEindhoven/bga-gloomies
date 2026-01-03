@@ -210,7 +210,7 @@ class Game extends \Bga\GameFramework\Table
         foreach ($playersBasicInfos as $player_id => $player) {
             $this->player_stardust->set($player_id, $player['player_no'] + 0);
         }
-        NewGame\NewGame::create($this->decks)->setup_components();
+        NewGame\NewGame::create($this->decks)->setup_components()->setup_players($this->getNextPlayerTable(), $this->player_helpers);
 
         // Init global values with their initial values.
 
@@ -225,9 +225,7 @@ class Game extends \Bga\GameFramework\Table
         // TODO: Setup the initial game situation here.
 
         // Activate first player once everything has been initialized and ready.
-        $this->player_stardust->set($this->getNextPlayerTable()[0], $this->player_stardust->get($player_id) + 10);
         $this->activeNextPlayer();
-        $this->player_helpers->set($this->getActivePlayerId(), $this->player_helpers->get($player_id) + 100);
 
         return PlayerTurn::class;
     }

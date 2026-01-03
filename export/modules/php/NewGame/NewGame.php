@@ -17,6 +17,8 @@ require_once("FlowersNewGame.php");
 require_once("FlowerCardsNewGame.php");
 require_once("BonusTilesNewGame.php");
 require_once("OrdersNewGame.php");
+require_once("ZombiesNewGame.php");
+require_once("PlayersNewGame.php");
 
 include_once(__DIR__.'/../Infrastructure/Flower.php');
 include_once(__DIR__.'/../Infrastructure/FlowerCard.php');
@@ -55,25 +57,16 @@ class NewGame {
         return $this;
     }
 
-    public function setup_zombies(&$players, int $number_zombieplayers): NewGame {
-        $keys = array_keys($players);
-        // Assign player slots to Zombie by overwriting the player name
-        for ($Zombie_index = 0; $Zombie_index < $number_zombieplayers; $Zombie_index++) {
-            // Interleave human players with Zombie players
-            $this->skipFirstKeyIfPossible($keys, $number_zombieplayers - $Zombie_index);
-            $this->assignPlayerAsZombie($players[$keys[array_key_first($keys)]], $Zombie_index + 1);
-            unset($keys[array_key_first($keys)]);
-        }
-
+    public function setup_players($nextPlayerTable, $player_helpers): NewGame {
+        PlayersNewGame::create($this->decks['flower_card'])
+            ->set_nextPlayerTable($nextPlayerTable)
+            ->setup_helpers($player_helpers);
         return $this;
     }
-    protected function skipFirstKeyIfPossible(& $keys, $remaining_Zombie) {
-        if ($remaining_Zombie < count($keys)) {
-            // First in the remaining list is a human player
-            unset($keys[array_key_first($keys)]);
-        }
-    }
-    protected function assignPlayerAsZombie(& $player, $Zombie_sequence_number) {
-        $player['player_name'] = 'Zombie_' . ($Zombie_sequence_number);
+
+    public function setup_zombies(&$players, int $number_zombieplayers): NewGame {
+        ZombiesNewGame::setup($players, $number_zombieplayers);
+
+        return $this;
     }
 }
