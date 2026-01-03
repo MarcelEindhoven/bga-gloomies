@@ -14,13 +14,11 @@ declare(strict_types=1);
 namespace Bga\Games\Gloomies\Infrastructure;
 
 #[\AllowDynamicProperties]
-class FlowerFactory {
-    const FLOWER_VALUES = ['no_flower', 'moon_lily', 'orbit_flower', 'sun_thistle', 'galaxy_poppy'];
-
+class OrderFactory {
     protected array $definitions = [];
 
-    static public function create($deck): FlowerFactory {
-        $object = new FlowerFactory();
+    static public function create($deck): OrderFactory {
+        $object = new OrderFactory();
         $object->set_deck($deck);
         return $object;
     }
@@ -29,16 +27,17 @@ class FlowerFactory {
         $this->deck = $deck;
     }
 
-    public function add($first_colour) {
-        $this->definitions[] = array( 'type' => $first_colour, 'type_arg' => 0, 'nbr' => 1);
+    public function add($points, $flowers) {
+        $storage_value = 0;
+        foreach ($flowers as $flower) {
+            $storage_value = $storage_value * 10 + array_search($flower, Flower::FLOWER_VALUES);
+        }
+
+        $this->definitions[] = array( 'type' => $storage_value, 'type_arg' => $points, 'nbr' => 1);
     }
-    public function flush($location) {
-        $this->deck->createCards($this->definitions, $location);
+
+    public function flush() {
+        $this->deck->createCards($this->definitions);
         $this->definitions = [];
     }
-}
-#[\AllowDynamicProperties]
-class Flower {
-    const FLOWER_VALUES = ['no_flower', 'moon_lily', 'orbit_flower', 'sun_thistle', 'galaxy_poppy'];
-
 }

@@ -49,7 +49,7 @@ class Game extends \Bga\GameFramework\Table
 
         $this->decks['flower'] = $this->deckFactory->createDeck('flower');
         $this->decks['bonus'] = $this->deckFactory->createDeck('bonus');
-        $this->decks['order'] = $this->deckFactory->createDeck('order');
+        $this->decks['order_card'] = $this->deckFactory->createDeck('order_card');
         $this->decks['flower_card'] = $this->deckFactory->createDeck('flower_card');
 
         self::$CARD_TYPES = [

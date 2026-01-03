@@ -55,7 +55,11 @@ CREATE TABLE IF NOT EXISTS `bonus` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- Order cards
-CREATE TABLE IF NOT EXISTS `order` (
+-- type is encoded flower order, type_arg is unused
+-- Location can be deck, market and player ID
+-- Location arg is unused for deck, position in market for market, unused for player ID
+-- Note that "order" cannot be used as a table name because it has meaning in SQL
+CREATE TABLE IF NOT EXISTS `order_card` (
   `card_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `card_type` varchar(16) NOT NULL,
   `card_type_arg` int(11) NOT NULL,

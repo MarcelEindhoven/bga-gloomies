@@ -18,7 +18,7 @@ namespace Bga\Games\Gloomies\NewGame;
 
 #[\AllowDynamicProperties]
 class BonusTilesNewGame {
-    const PURPLE_BONUS = ['stardust', '1 little_helper', '2 little_helpers', 'order'];
+    const PURPLE_BONUS = ['stardust', '1 little_helper', '2 little_helpers', 'order_card'];
     const TURQUOISE_BONUS = ['stardust', 'moon lily', 'orbit flower', 'sun thistle', 'galaxy poppy', 'joker_flower'];
     const BONUS_TILES = [
         [ 'stardust', 'stardust' ], // 1
@@ -35,16 +35,16 @@ class BonusTilesNewGame {
         [ '2 little_helpers', 'sun thistle' ], // 16
         [ '2 little_helpers', 'galaxy poppy' ], // 17
         [ '2 little_helpers', 'joker_flower' ], // 18
-        [ 'order', 'stardust' ], // 19
-        [ 'order', 'stardust' ], // 19
-        [ 'order', 'stardust' ], // 19
-        [ 'order', 'moon lily' ], // 20
-        [ 'order', 'moon lily' ], // 20
-        [ 'order', 'orbit flower' ], // 21
-        [ 'order', 'orbit flower' ], // 21
-        [ 'order', 'sun thistle' ], // 22
-        [ 'order', 'sun thistle' ], // 22
-        [ 'order', 'joker_flower' ], // 24
+        [ 'order_card', 'stardust' ], // 19
+        [ 'order_card', 'stardust' ], // 19
+        [ 'order_card', 'stardust' ], // 19
+        [ 'order_card', 'moon lily' ], // 20
+        [ 'order_card', 'moon lily' ], // 20
+        [ 'order_card', 'orbit flower' ], // 21
+        [ 'order_card', 'orbit flower' ], // 21
+        [ 'order_card', 'sun thistle' ], // 22
+        [ 'order_card', 'sun thistle' ], // 22
+        [ 'order_card', 'joker_flower' ], // 24
     ];
 
     static public function create($factory): BonusTilesNewGame {

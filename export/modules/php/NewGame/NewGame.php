@@ -16,12 +16,16 @@ namespace Bga\Games\Gloomies\NewGame;
 require_once("FlowersNewGame.php");
 require_once("FlowerCardsNewGame.php");
 require_once("BonusTilesNewGame.php");
+require_once("OrdersNewGame.php");
 
 include_once(__DIR__.'/../Infrastructure/Flower.php');
 include_once(__DIR__.'/../Infrastructure/FlowerCard.php');
 include_once(__DIR__.'/../Infrastructure/BonusTile.php');
+include_once(__DIR__.'/../Infrastructure/Order.php');
+
 use Bga\Games\Gloomies\Infrastructure\FlowerCardFactory;
 use Bga\Games\Gloomies\Infrastructure\FlowerFactory;
+use Bga\Games\Gloomies\Infrastructure\OrderFactory;
 use Bga\Games\Gloomies\Infrastructure\BonusTileFactory;
 
 #[\AllowDynamicProperties]
@@ -38,6 +42,7 @@ class NewGame {
         $this->decks = $decks;
         $this->flowers = FlowersNewGame::create(FlowerFactory::create($this->decks['flower']));
         $this->flower_cards = FlowerCardsNewGame::create(FlowerCardFactory::create($this->decks['flower_card']));
+        $this->order = OrdersNewGame::create(OrderFactory::create($this->decks['order_card']));
         $this->bonus = BonusTilesNewGame::create(BonusTileFactory::create($this->decks['bonus']));
         return $this;
     }
@@ -45,6 +50,7 @@ class NewGame {
     public function setup_components() : NewGame {
         $this->flowers->setup();
         $this->flower_cards->setup();
+        $this->order->setup();
         $this->bonus->setup();
         return $this;
     }
