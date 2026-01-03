@@ -16,6 +16,8 @@ namespace Bga\Games\Gloomies\NewGame;
 #[\AllowDynamicProperties]
 class PlayersNewGame {
     const HELPERS_COUNT = [1, 1, 2, 2];
+    const FLOWER_CARDS_COUNT = [4, 5, 4, 5];
+
     protected array $nextPlayerTable = [];
 
     static public function create($deck): PlayersNewGame {
@@ -35,28 +37,31 @@ class PlayersNewGame {
     }
 
     public function setup_helpers($counter): PlayersNewGame {
-        foreach ($this->get_helper_count_per_player() as $player_id => $count) {
+        foreach ($this->get_count_per_player(self::HELPERS_COUNT) as $player_id => $count) {
             $counter->set($player_id, $count);
         }
 
         return $this;
     }
-    public function get_helper_count_per_player(): array {
+
+    public function setup_flower_cards(): PlayersNewGame {
+        foreach ($this->get_count_per_player(self::FLOWER_CARDS_COUNT) as $player_id => $count) {
+            $this->deck->pickCards($count, 'deck', $player_id);
+        }
+        return $this;
+    }
+
+    public function get_count_per_player($count_per_player_order): array {
         $helpers = [];
         $first_player = $this->nextPlayerTable[0];
         $player_id = $first_player;
         $index = 0;
         do {
-            $helpers[$player_id] = self::HELPERS_COUNT[$index];
+            $helpers[$player_id] = $count_per_player_order[$index];
             $player_id = $this->nextPlayerTable[$player_id];
             $index++;
         } while ($player_id != $first_player);
 
         return $helpers;
-    }
-
-    public function setup_flower_cards(): PlayersNewGame {
-        // $this->deck->createCards($this->definitions);
-        return $this;
     }
 }

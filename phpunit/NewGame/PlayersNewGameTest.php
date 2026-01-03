@@ -54,15 +54,16 @@ class PlayersNewGameTest extends TestCase{
     public function test_helpers_4players() {
         // Arrange
         $this->set_number_players(4);
+        $count_per_player_order = [1, 4, 5, 2];
         $expected_helpers = [
                 1000 => 1, 
-                2000 => 1, 
-                3000 => 2, 
+                2000 => 4, 
+                3000 => 5, 
                 4000 => 2, 
         ];
 
         // Act
-        $helpers = $this->sut->get_helper_count_per_player();
+        $helpers = $this->sut->get_count_per_player($count_per_player_order);
         // Assert
         $this->assertEquals($expected_helpers, $helpers);
     }
@@ -71,6 +72,8 @@ class PlayersNewGameTest extends TestCase{
      */
     public function test_flower_cards() {
         // Arrange
+        $this->set_number_players(1);
+        $this->mock_cards->expects($this->exactly(1))->method('pickCards')->with(4, 'deck', 1000);
         // Act
         $this->sut->setup_flower_cards();
         // Assert

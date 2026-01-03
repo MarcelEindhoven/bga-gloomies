@@ -207,9 +207,6 @@ class Game extends \Bga\GameFramework\Table
 
         $playersBasicInfos = $this->loadPlayersBasicInfos();
 
-        foreach ($playersBasicInfos as $player_id => $player) {
-            $this->player_stardust->set($player_id, $player['player_no'] + 0);
-        }
         NewGame\NewGame::create($this->decks)->setup_components()->setup_players($this->getNextPlayerTable(), $this->player_helpers);
 
         // Init global values with their initial values.

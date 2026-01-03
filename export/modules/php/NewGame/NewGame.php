@@ -60,7 +60,8 @@ class NewGame {
     public function setup_players($nextPlayerTable, $player_helpers): NewGame {
         PlayersNewGame::create($this->decks['flower_card'])
             ->set_nextPlayerTable($nextPlayerTable)
-            ->setup_helpers($player_helpers);
+            ->setup_helpers($player_helpers)
+            ->setup_flower_cards();
         return $this;
     }
 
