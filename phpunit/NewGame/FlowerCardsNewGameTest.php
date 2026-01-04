@@ -16,6 +16,7 @@ use Bga\Games\Gloomies\Infrastructure\FlowerCardFactory;
 
 include_once(__DIR__.'/../../_ide_helper.php');
 
+#[\PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations]
 class FlowerCardsNewGameTest extends TestCase{
     protected ?FlowerCardsNewGame $sut = null;
     protected ?FlowerCardFactory $mock_factory = null;

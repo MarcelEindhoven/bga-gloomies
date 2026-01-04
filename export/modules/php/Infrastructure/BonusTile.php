@@ -13,25 +13,17 @@ declare(strict_types=1);
 
 namespace Bga\Games\Gloomies\Infrastructure;
 
+require_once("Factory.php");
+
 #[\AllowDynamicProperties]
-class BonusTileFactory {
+class BonusTileFactory extends Factory {
     protected array $definitions = [];
 
-    static public function create($deck): BonusTileFactory {
-        $object = new BonusTileFactory();
-        $object->set_deck($deck);
-        return $object;
-    }
-
-    public function set_deck($deck) {
-        $this->deck = $deck;
+    public function __construct($deck) {
+        parent::__construct($deck);
     }
 
     public function add($purple, $turquoise) {
         $this->definitions[] = array( 'type' => $purple, 'type_arg' => $turquoise, 'nbr' => 1);
-    }
-    public function flush() {
-        $this->deck->createCards($this->definitions);
-        $this->definitions = [];
     }
 }

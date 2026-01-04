@@ -42,10 +42,12 @@ class NewGame {
 
     public function set_decks($decks) : NewGame {
         $this->decks = $decks;
-        $this->flowers = FlowersNewGame::create(FlowerFactory::create($this->decks['flower']));
-        $this->flower_cards = FlowerCardsNewGame::create(FlowerCardFactory::create($this->decks['flower_card']));
-        $this->order = OrdersNewGame::create(OrderFactory::create($this->decks['order_card']));
-        $this->bonus = BonusTilesNewGame::create(BonusTileFactory::create($this->decks['bonus']));
+
+        $this->flowers = FlowersNewGame::create(new FlowerFactory($this->decks['flower']));
+        $this->flower_cards = FlowerCardsNewGame::create(new FlowerCardFactory($this->decks['flower_card']));
+        $this->order = OrdersNewGame::create(new OrderFactory($this->decks['order_card']));
+        $this->bonus = BonusTilesNewGame::create(new BonusTileFactory($this->decks['bonus']));
+
         return $this;
     }
 

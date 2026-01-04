@@ -16,6 +16,7 @@ use Bga\Games\Gloomies\Infrastructure\OrderFactory;
 
 include_once(__DIR__.'/../../_ide_helper.php');
 
+#[\PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations]
 class OrdersNewGameTest extends TestCase{
     protected ?OrdersNewGame $sut = null;
     protected ?OrderFactory $mock_factory = null;

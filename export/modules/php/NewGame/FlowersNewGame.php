@@ -32,6 +32,7 @@ class FlowersNewGame {
         $this->factory = $factory;
         return $this;
     }
+
     public function setup(): FlowersNewGame {
         // Create flowers
         $type = 0;

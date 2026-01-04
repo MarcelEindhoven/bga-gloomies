@@ -11,6 +11,8 @@
  * Purple bonus tiles are stardust, 1 or 2 little helpers, order
  * Turquoise bonus tiles are: stardust, bonus flower or joke flower
  * Bonus flower is moon lily, orbit flower, sun thistle, galaxy poppy
+ * 
+ * Place 3 cards next to the stack
  */
 declare(strict_types=1);
 
@@ -37,6 +39,11 @@ class OrdersNewGame {
         [16, [ 'moon_lily', 'orbit_flower', 'orbit_flower', 'sun_thistle', 'galaxy_poppy' ]],
         [16, [ 'orbit_flower', 'orbit_flower', 'sun_thistle', 'sun_thistle', 'galaxy_poppy' ]],
     ];
+    const LOCATIONS = [
+        ['deck', 'market', 1],
+        ['deck', 'market', 2],
+        ['deck', 'market', 3],
+    ];
 
     static public function create($factory): OrdersNewGame {
         $object = new OrdersNewGame();
@@ -55,6 +62,8 @@ class OrdersNewGame {
             $this->factory->add($order[0], $order[1]);
         }
         $this->factory->flush();
+
+        $this->factory->distribute(self::LOCATIONS);
 
         return $this;
     }

@@ -16,6 +16,7 @@ use Bga\Games\Gloomies\Infrastructure\BonusTileFactory;
 
 include_once(__DIR__.'/../../_ide_helper.php');
 
+#[\PHPUnit\Framework\Attributes\AllowMockObjectsWithoutExpectations]
 class BonusTilesNewGameTest extends TestCase{
     protected ?BonusTilesNewGame $sut = null;
     protected ?BonusTileFactory $mock_factory = null;
@@ -27,7 +28,7 @@ class BonusTilesNewGameTest extends TestCase{
 
     /**
      */
-    public function test_BonusTile_creation() {
+    public function test_creation() {
         // Arrange
         $this->mock_factory->expects($this->exactly(1))->method('flush');
         $this->mock_factory->expects($this->exactly(24))->method('add');

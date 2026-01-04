@@ -13,18 +13,14 @@ declare(strict_types=1);
 
 namespace Bga\Games\Gloomies\Infrastructure;
 
+require_once("Factory.php");
+
 #[\AllowDynamicProperties]
-class OrderFactory {
+class OrderFactory extends Factory {
     protected array $definitions = [];
 
-    static public function create($deck): OrderFactory {
-        $object = new OrderFactory();
-        $object->set_deck($deck);
-        return $object;
-    }
-
-    public function set_deck($deck) {
-        $this->deck = $deck;
+    public function __construct($deck) {
+        parent::__construct($deck);
     }
 
     public function add($points, $flowers) {
@@ -34,10 +30,5 @@ class OrderFactory {
         }
 
         $this->definitions[] = array( 'type' => $storage_value, 'type_arg' => $points, 'nbr' => 1);
-    }
-
-    public function flush() {
-        $this->deck->createCards($this->definitions);
-        $this->definitions = [];
     }
 }

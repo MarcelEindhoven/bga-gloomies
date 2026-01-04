@@ -59,6 +59,13 @@ class BonusTilesNewGame {
     }
 
     public function setup(): BonusTilesNewGame {
+        $this->create_elements();
+
+        $this->factory->distribute($this->get_locations());
+
+        return $this;
+    }
+    public function create_elements(): BonusTilesNewGame {
         // Create BonusTiles
         foreach (self::BONUS_TILES as $tile) {
             $this->factory->add(array_search($tile[0], self::PURPLE_BONUS), array_search($tile[1], self::TURQUOISE_BONUS));
@@ -67,4 +74,15 @@ class BonusTilesNewGame {
 
         return $this;
     }
+
+    public function get_locations(): array {
+        $locations = [];
+        for ($indentation = 0; $indentation < 8; $indentation++) {
+            for ($i = 0; $i < 3; $i++) {
+                $locations[] = ['deck', 'purple_' . $indentation, $i];
+            }
+        }
+        return $locations;
+    }
+
 }

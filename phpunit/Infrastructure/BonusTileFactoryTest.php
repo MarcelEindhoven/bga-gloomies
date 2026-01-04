@@ -20,7 +20,7 @@ class BonusTileFactoryTest extends TestCase{
 
     public function setup(): void {
         $this->mock_cards = $this->createMock(Deck::class);
-        $this->sut = BonusTileFactory::create($this->mock_cards);
+        $this->sut = new BonusTileFactory($this->mock_cards);
     }
 
     public function test_flush_with_empty_definition() {

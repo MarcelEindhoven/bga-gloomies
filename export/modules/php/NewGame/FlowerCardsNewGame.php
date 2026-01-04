@@ -9,10 +9,13 @@
  * -----
  *
  * 14 x moon lily, 12 x orbit flower, 12 x sun thistle, 8 x galaxy poppy, 14 jokers
+ * Place 3 cards next to the stack
  */
 declare(strict_types=1);
 
 namespace Bga\Games\Gloomies\NewGame;
+
+require_once("OrdersNewGame.php");
 
 #[\AllowDynamicProperties]
 class FlowerCardsNewGame {
@@ -35,6 +38,22 @@ class FlowerCardsNewGame {
         return $this;
     }
 
+    public function setup(): FlowerCardsNewGame {
+        $this->create_elements();
+
+        $this->factory->distribute(OrdersNewGame::LOCATIONS);
+
+        return $this;
+    }
+
+    public function create_elements(): FlowerCardsNewGame {
+        $this->setup_flowers();
+        $this->setup_jokers();
+        $this->factory->flush();
+
+        return $this;
+    }
+
     public function setup_flowers(): FlowerCardsNewGame {
         // Create flowers
         $type = 0;
@@ -53,14 +72,6 @@ class FlowerCardsNewGame {
         foreach (self::JOKER_TYPES as $type) {
             $this->factory->add_double_type($type[0], $type[1]);
         }
-
-        return $this;
-    }
-
-    public function setup(): FlowerCardsNewGame {
-        $this->setup_flowers();
-        $this->setup_jokers();
-        $this->factory->flush();
 
         return $this;
     }

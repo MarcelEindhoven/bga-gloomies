@@ -20,7 +20,7 @@ class FlowerCardFactoryTest extends TestCase{
 
     public function setup(): void {
         $this->mock_cards = $this->createMock(Deck::class);
-        $this->sut = FlowerCardFactory::create($this->mock_cards);
+        $this->sut = new FlowerCardFactory($this->mock_cards);
     }
 
     public function test_flush_with_empty_definition() {
