@@ -42,6 +42,7 @@ export class Game {
     setup( gamedatas ) {
         console.log( "Starting game setup" );
         this.gamedatas = gamedatas;
+        console.log( this.gamedatas );
 
         // Example to add a div on the game area
         this.bga.gameArea.getElement().insertAdjacentHTML('beforeend', `

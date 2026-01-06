@@ -21,6 +21,10 @@ namespace Bga\Games\Gloomies;
 use Bga\Games\Gloomies\States\PlayerTurn;
 use Bga\GameFramework\Components\Counters\PlayerCounter;
 
+include_once(__DIR__.'/UseCases/AllDatas.php');
+
+use Bga\Games\Gloomies\UseCases\AllDatas;
+
 class Game extends \Bga\GameFramework\Table
 {
     protected array $decks = [];
@@ -135,20 +139,17 @@ class Game extends \Bga\GameFramework\Table
      */
     protected function getAllDatas(): array
     {
-        $result = [];
+        $result = AllDatas::create($this->decks)
+            ->set_current_player_id((int) $this->getCurrentPlayerId())
+            ->get($this->getCollectionFromDb(
+                "SELECT `player_id` `id`, `player_score` `score` FROM `player`"
+        ));
 
-        // WARNING: We must only return information visible by the current player.
-        $current_player_id = (int) $this->getCurrentPlayerId();
-
-        // Get information about players.
-        // NOTE: you can retrieve some extra field you added for "player" table in `dbmodel.sql` if you need it.
-        $result["players"] = $this->getCollectionFromDb(
-            "SELECT `player_id` `id`, `player_score` `score` FROM `player`"
-        );
         $this->player_stardust->fillResult($result);
         $this->player_helpers->fillResult($result);
 
-        // TODO: Gather all information about current game situation (visible by player $current_player_id).
+        $result['board_rotation'] = $this->globals->get('board_rotation');
+        $result['board_flip'] = $this->globals->get('board_flip');
 
         return $result;
     }
