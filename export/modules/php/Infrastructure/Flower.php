@@ -30,6 +30,10 @@ class FlowerFactory extends Factory {
 #[\AllowDynamicProperties]
 class Flower {
     const FLOWER_VALUES = ['no_flower', 'moon_lily', 'orbit_flower', 'sun_thistle', 'galaxy_poppy'];
+
+    static public function get_index($string): int {
+        return array_search($string, self::FLOWER_VALUES);
+    }
 }
 
 #[\AllowDynamicProperties]

@@ -26,7 +26,7 @@ class OrderFactory extends Factory {
     public function add($points, $flowers) {
         $storage_value = 0;
         foreach ($flowers as $flower) {
-            $storage_value = $storage_value * 10 + array_search($flower, Flower::FLOWER_VALUES);
+            $storage_value = $storage_value * 10 + Flower::get_index($flower);
         }
 
         $this->definitions[] = array( 'type' => $storage_value, 'type_arg' => $points, 'nbr' => 1);
