@@ -16,6 +16,9 @@ namespace Bga\Games\Gloomies\UseCases;
 include_once(__DIR__.'/../Infrastructure/BonusTile.php');
 use Bga\Games\Gloomies\Infrastructure\CurrentBonusTiles;
 
+include_once(__DIR__.'/../Domain/BonusTiles.php');
+use Bga\Games\Gloomies\Domain\VisibleBonusTiles;
+
 class AllDatas {
     protected array $decks = [];
     /**
@@ -52,7 +55,7 @@ class AllDatas {
         $result['board_flip'] = $this->globals->get('board_flip');
 
         $result['flowers'] = $this->decks['flower']->getCardsInLocation('table');
-        $result['bonus_purple'] = CurrentBonusTiles::create($this->decks['bonus'])->get();
+        $result['bonus_purple'] = VisibleBonusTiles::create(CurrentBonusTiles::create($this->decks['bonus']))->get_for_location('purple');
         $result['order_cards'] = $this->decks['order_card']->getCardsInLocation('table');
         $result['flower_cards'] = $this->decks['flower_card']->getCardsInLocation('table');
 

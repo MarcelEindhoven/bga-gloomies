@@ -18,7 +18,7 @@ namespace Bga\Games\Gloomies\NewGame;
 
 #[\AllowDynamicProperties]
 class BonusTilesNewGame {
-    const PURPLE_BONUS = ['stardust', '1 little_helper', '2 little_helpers', 'order_card'];
+    const PURPLE_BONUS = ['stardust', '1_little_helper', '2_little_helpers', 'order_card'];
     const TURQUOISE_BONUS = ['stardust', 'moon_lily', 'orbit_flower', 'sun_thistle', 'galaxy_poppy', 'joker_flower'];
     const BONUS_TILES = [
         [ 'stardust', 'stardust' ], // 1
@@ -27,14 +27,14 @@ class BonusTilesNewGame {
         [ 'stardust', 'sun_thistle' ], // 4
         [ 'stardust', 'galaxy_poppy' ], // 5
         [ 'stardust', 'joker_flower' ], // 6
-        [ '1 little_helper', 'stardust' ], // 7
-        [ '1 little_helper', 'moon_lily' ], // 8
-        [ '1 little_helper', 'orbit_flower' ], // 9
-        [ '1 little_helper', 'galaxy_poppy' ], // 11
-        [ '2 little_helpers', 'stardust' ], // 13
-        [ '2 little_helpers', 'sun_thistle' ], // 16
-        [ '2 little_helpers', 'galaxy_poppy' ], // 17
-        [ '2 little_helpers', 'joker_flower' ], // 18
+        [ '1_little_helper', 'stardust' ], // 7
+        [ '1_little_helper', 'moon_lily' ], // 8
+        [ '1_little_helper', 'orbit_flower' ], // 9
+        [ '1_little_helper', 'galaxy_poppy' ], // 11
+        [ '2_little_helpers', 'stardust' ], // 13
+        [ '2_little_helpers', 'sun_thistle' ], // 16
+        [ '2_little_helpers', 'galaxy_poppy' ], // 17
+        [ '2_little_helpers', 'joker_flower' ], // 18
         [ 'order_card', 'stardust' ], // 19
         [ 'order_card', 'stardust' ], // 19
         [ 'order_card', 'stardust' ], // 19

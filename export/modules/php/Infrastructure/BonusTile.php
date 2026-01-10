@@ -30,7 +30,7 @@ class BonusTileFactory extends Factory {
 
 #[\AllowDynamicProperties]
 class CurrentBonusTiles {
-    const PURPLE_BONUS = ['stardust', '1 little_helper', '2 little_helpers', 'order_card'];
+    const PURPLE_BONUS = ['stardust', '1_little_helper', '2_little_helpers', 'order_card'];
     const TURQUOISE_BONUS = ['stardust', 'moon_lily', 'orbit_flower', 'sun_thistle', 'galaxy_poppy', 'joker_flower'];
 
     static public function create($deck): CurrentBonusTiles {
