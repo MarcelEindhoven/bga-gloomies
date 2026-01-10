@@ -19,6 +19,7 @@ require_once("OrdersNewGame.php");
 
 #[\AllowDynamicProperties]
 class FlowerCardsNewGame {
+    const CARD_COUNTS = [4, 5, 4, 5];
     const FLOWER_COUNTS = [
         'moon_lily' => 14,
         'orbit_flower' => 12,
@@ -38,12 +39,22 @@ class FlowerCardsNewGame {
         return $this;
     }
 
-    public function setup(): FlowerCardsNewGame {
+    public function setup($players = []): FlowerCardsNewGame {
         $this->create_elements();
 
         $this->factory->distribute(OrdersNewGame::LOCATIONS);
+        $this->set_initial_number_cards($players);
+        $this->factory->pick_cards($players);
 
         return $this;
+    }
+    public function set_initial_number_cards(&$players): void {
+        $index = 0;
+        foreach ($players as &$player) {
+            $player['initial_number_cards'] = self::CARD_COUNTS[$index];
+            $index++;
+        }
+
     }
 
     public function create_elements(): FlowerCardsNewGame {

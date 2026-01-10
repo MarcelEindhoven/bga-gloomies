@@ -25,10 +25,19 @@ class FlowerCardFactoryTest extends TestCase{
 
     public function test_flush_with_empty_definition() {
         // Arrange
-        $expected_location = 'deck1';
         $this->mock_cards->expects($this->exactly(1))->method('createCards')->with([]);
         // Act
         $this->sut->flush();
+        // Assert
+    }
+
+    public function test_single_player() {
+        // Arrange
+        $player = array('id' => '2371152', 'initial_number_cards' => 4, 'score' => '0', 'stardust' => 0, 'helpers' => 1, 'color' => 'ff0000');
+        $expected_location = '2371152';
+        $this->mock_cards->expects($this->exactly(1))->method('pickCardsForLocation')->with(4, 'deck', $expected_location);
+        // Act
+        $this->sut->pick_cards([$player]);
         // Assert
     }
 

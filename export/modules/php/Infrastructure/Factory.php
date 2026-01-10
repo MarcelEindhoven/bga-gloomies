@@ -38,4 +38,11 @@ class Factory {
             $this->deck->pickCardForLocation($location[0], $location[1], $location[2]);
         }
     }
+
+    public function pick_cards($players): void {
+        foreach ($players as $player) {
+            $expected_location = $player['id'] === null ? 'market' : $player['id'];
+            $this->deck->pickCardsForLocation($player['initial_number_cards'], 'deck', $expected_location);
+        }
+    }
 }

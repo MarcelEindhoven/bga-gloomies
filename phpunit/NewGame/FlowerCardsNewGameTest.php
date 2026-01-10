@@ -37,5 +37,16 @@ class FlowerCardsNewGameTest extends TestCase{
         $this->sut->setup();
         // Assert
     }
+    public function test_distribution() {
+        // Arrange
+        $player = array('id' => '2371152', 'score' => '0', 'stardust' => 0, 'helpers' => 1, 'color' => 'ff0000');
+        $expected_player = $player;
+        $expected_player['initial_number_cards'] = 4;
+        $this->mock_factory->expects($this->exactly(1))->method('distribute');
+        $this->mock_factory->expects($this->exactly(1))->method('pick_cards')->with([$expected_player]);
+        // Act
+        $this->sut->setup([$player]);
+        // Assert
+    }
 }
 ?>
