@@ -20,7 +20,6 @@ namespace Bga\Games\Gloomies\NewGame;
 
 #[\AllowDynamicProperties]
 class OrdersNewGame {
-    const FLOWER_VALUES = ['no_flower', 'moon_lily', 'orbit_flower', 'sun_thistle', 'galaxy_poppy'];
     const ORDERS = [
         [7, [ 'moon_lily', 'moon_lily', 'sun_thistle' ]],
         [8, [ 'moon_lily', 'moon_lily', 'galaxy_poppy' ]],

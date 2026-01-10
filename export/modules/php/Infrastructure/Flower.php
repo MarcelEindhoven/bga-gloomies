@@ -17,8 +17,6 @@ require_once("Factory.php");
 
 #[\AllowDynamicProperties]
 class FlowerFactory extends Factory {
-    const FLOWER_VALUES = ['no_flower', 'moon_lily', 'orbit_flower', 'sun_thistle', 'galaxy_poppy'];
-
     protected array $definitions = [];
 
     public function __construct($deck) {
@@ -32,5 +30,23 @@ class FlowerFactory extends Factory {
 #[\AllowDynamicProperties]
 class Flower {
     const FLOWER_VALUES = ['no_flower', 'moon_lily', 'orbit_flower', 'sun_thistle', 'galaxy_poppy'];
+}
 
+#[\AllowDynamicProperties]
+class CurrentFlowers {
+
+    static public function create($deck): CurrentFlowers {
+        $object = new CurrentFlowers();
+        $object->set_deck($deck);
+        return $object;
+    }
+
+    public function set_deck($deck): CurrentFlowers {
+        $this->deck = $deck;
+
+        return $this;
+    }
+    public function get_on_board(): array {
+        return $this->deck->getCardsInLocation('board');
+    }
 }

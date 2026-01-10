@@ -141,15 +141,13 @@ class Game extends \Bga\GameFramework\Table
     {
         $result = AllDatas::create($this->decks)
             ->set_current_player_id((int) $this->getCurrentPlayerId())
+            ->set_globals($this->globals)
             ->get($this->getCollectionFromDb(
                 "SELECT `player_id` `id`, `player_score` `score` FROM `player`"
         ));
 
         $this->player_stardust->fillResult($result);
         $this->player_helpers->fillResult($result);
-
-        $result['board_rotation'] = $this->globals->get('board_rotation');
-        $result['board_flip'] = $this->globals->get('board_flip');
 
         return $result;
     }

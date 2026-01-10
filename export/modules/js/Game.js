@@ -46,6 +46,9 @@ export class Game {
 
         // Example to add a div on the game area
         this.bga.gameArea.getElement().insertAdjacentHTML('beforeend', `
+            <div id="board" class="board"></div>
+        `);
+        this.bga.gameArea.getElement().insertAdjacentHTML('beforeend', `
             <div id="player-tables"></div>
         `);
         

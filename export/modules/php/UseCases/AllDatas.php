@@ -13,6 +13,9 @@ declare(strict_types=1);
 
 namespace Bga\Games\Gloomies\UseCases;
 
+include_once(__DIR__.'/../Infrastructure/BonusTile.php');
+use Bga\Games\Gloomies\Infrastructure\CurrentBonusTiles;
+
 class AllDatas {
     protected array $decks = [];
     /**
@@ -29,6 +32,11 @@ class AllDatas {
         return $this;
     }
 
+    public function set_globals($globals): AllDatas {
+        $this->globals = $globals;
+        return $this;
+    }
+
     public function set_current_player_id($current_player_id): AllDatas {
         $this->current_player_id = $current_player_id;
         return $this;
@@ -38,7 +46,17 @@ class AllDatas {
      * Combine results from database with calculated results from domain
      */
     public function get($players): array {
-        return ["players" => $players];
+        $result = ["players" => $players];
+
+        $result['board_rotation'] = $this->globals->get('board_rotation');
+        $result['board_flip'] = $this->globals->get('board_flip');
+
+        $result['flowers'] = $this->decks['flower']->getCardsInLocation('table');
+        $result['bonus_purple'] = CurrentBonusTiles::create($this->decks['bonus'])->get();
+        $result['order_cards'] = $this->decks['order_card']->getCardsInLocation('table');
+        $result['flower_cards'] = $this->decks['flower_card']->getCardsInLocation('table');
+
+        return $result;
     }
 
     protected function is_current_player_no_spectator($players) {

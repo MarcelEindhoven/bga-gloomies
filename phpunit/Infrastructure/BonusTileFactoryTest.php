@@ -39,7 +39,7 @@ class BonusTileFactoryTest extends TestCase{
         $this->mock_cards->expects($this->exactly(1))->method('createCards')->with([$expected_definition]);
 
         // Act
-        $this->sut->add($purple, $turquoise);
+        $this->sut->add(CurrentBonusTiles::PURPLE_BONUS[$purple], CurrentBonusTiles::TURQUOISE_BONUS[$turquoise]);
         $this->sut->flush();
         // Assert
     }

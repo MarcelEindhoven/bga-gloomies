@@ -19,31 +19,31 @@ namespace Bga\Games\Gloomies\NewGame;
 #[\AllowDynamicProperties]
 class BonusTilesNewGame {
     const PURPLE_BONUS = ['stardust', '1 little_helper', '2 little_helpers', 'order_card'];
-    const TURQUOISE_BONUS = ['stardust', 'moon lily', 'orbit flower', 'sun thistle', 'galaxy poppy', 'joker_flower'];
+    const TURQUOISE_BONUS = ['stardust', 'moon_lily', 'orbit_flower', 'sun_thistle', 'galaxy_poppy', 'joker_flower'];
     const BONUS_TILES = [
         [ 'stardust', 'stardust' ], // 1
-        [ 'stardust', 'moon lily' ], // 2
-        [ 'stardust', 'orbit flower' ], // 3
-        [ 'stardust', 'sun thistle' ], // 4
-        [ 'stardust', 'galaxy poppy' ], // 5
+        [ 'stardust', 'moon_lily' ], // 2
+        [ 'stardust', 'orbit_flower' ], // 3
+        [ 'stardust', 'sun_thistle' ], // 4
+        [ 'stardust', 'galaxy_poppy' ], // 5
         [ 'stardust', 'joker_flower' ], // 6
         [ '1 little_helper', 'stardust' ], // 7
-        [ '1 little_helper', 'moon lily' ], // 8
-        [ '1 little_helper', 'orbit flower' ], // 9
-        [ '1 little_helper', 'galaxy poppy' ], // 11
+        [ '1 little_helper', 'moon_lily' ], // 8
+        [ '1 little_helper', 'orbit_flower' ], // 9
+        [ '1 little_helper', 'galaxy_poppy' ], // 11
         [ '2 little_helpers', 'stardust' ], // 13
-        [ '2 little_helpers', 'sun thistle' ], // 16
-        [ '2 little_helpers', 'galaxy poppy' ], // 17
+        [ '2 little_helpers', 'sun_thistle' ], // 16
+        [ '2 little_helpers', 'galaxy_poppy' ], // 17
         [ '2 little_helpers', 'joker_flower' ], // 18
         [ 'order_card', 'stardust' ], // 19
         [ 'order_card', 'stardust' ], // 19
         [ 'order_card', 'stardust' ], // 19
-        [ 'order_card', 'moon lily' ], // 20
-        [ 'order_card', 'moon lily' ], // 20
-        [ 'order_card', 'orbit flower' ], // 21
-        [ 'order_card', 'orbit flower' ], // 21
-        [ 'order_card', 'sun thistle' ], // 22
-        [ 'order_card', 'sun thistle' ], // 22
+        [ 'order_card', 'moon_lily' ], // 20
+        [ 'order_card', 'moon_lily' ], // 20
+        [ 'order_card', 'orbit_flower' ], // 21
+        [ 'order_card', 'orbit_flower' ], // 21
+        [ 'order_card', 'sun_thistle' ], // 22
+        [ 'order_card', 'sun_thistle' ], // 22
         [ 'order_card', 'joker_flower' ], // 24
     ];
 
@@ -68,7 +68,7 @@ class BonusTilesNewGame {
     public function create_elements(): BonusTilesNewGame {
         // Create BonusTiles
         foreach (self::BONUS_TILES as $tile) {
-            $this->factory->add(array_search($tile[0], self::PURPLE_BONUS), array_search($tile[1], self::TURQUOISE_BONUS));
+            $this->factory->add($tile[0], $tile[1]);
         }
         $this->factory->flush();
 
@@ -79,7 +79,7 @@ class BonusTilesNewGame {
         $locations = [];
         for ($indentation = 0; $indentation < 8; $indentation++) {
             for ($i = 0; $i < 3; $i++) {
-                $locations[] = ['deck', 'purple_' . $indentation, $i];
+                $locations[] = ['deck', 'purple', 10 * $indentation + $i];
             }
         }
         return $locations;

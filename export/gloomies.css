@@ -66,6 +66,12 @@
         background-repeat: none;
     }
 */
+#board {
+    background-image: url('img/board1a.jpg');
+    width: 800px;
+    height: 800px;
+    position: relative;
+}
 
 
 

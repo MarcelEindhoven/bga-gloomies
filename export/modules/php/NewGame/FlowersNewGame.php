@@ -41,7 +41,7 @@ class FlowersNewGame {
             for ($i = 0; $i < $count; $i++) {
                 $this->factory->add($type);
             }
-            $this->factory->flush('deck' . $type);
+            $this->factory->flush($colour);
         }
 
         return $this;
