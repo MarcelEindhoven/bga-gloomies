@@ -50,8 +50,8 @@ class CurrentFlowerCards {
         return $this;
     }
 
-    public function get($location = 'market'): array {
-        return $this->get_from_cards($this->deck->getCardsInLocation($location));
+    public function get($location = 'market', ?int $location_arg = null): array {
+        return $this->get_from_cards($this->deck->getCardsInLocation($location, $location_arg));
     }
 
     public function get_from_cards(array $cards): array {

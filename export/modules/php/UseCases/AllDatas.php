@@ -19,6 +19,9 @@ use Bga\Games\Gloomies\Infrastructure\CurrentBonusTiles;
 include_once(__DIR__.'/../Infrastructure/FlowerCard.php');
 use Bga\Games\Gloomies\Infrastructure\CurrentFlowerCards;
 
+include_once(__DIR__.'/../Infrastructure/Order.php');
+use Bga\Games\Gloomies\Infrastructure\CurrentOrders;
+
 include_once(__DIR__.'/../Domain/BonusTiles.php');
 use Bga\Games\Gloomies\Domain\VisibleBonusTiles;
 
@@ -59,9 +62,9 @@ class AllDatas {
 
         $result['flowers'] = $this->decks['flower']->getCardsInLocation('table');
         $result['bonus_purple'] = VisibleBonusTiles::create(CurrentBonusTiles::create($this->decks['bonus']))->get_for_location('purple');
-        $result['order_cards'] = $this->decks['order_card']->getCardsInLocation('table');
+        $result['order_market'] = CurrentOrders::create($this->decks['order_card'])->get('market');
         $result['flower_market'] = CurrentFlowerCards::create($this->decks['flower_card'])->get('market');
-        $result['flower_cards_current_player'] = CurrentFlowerCards::create($this->decks['flower_card'])->get($this->current_player_id);
+        $result['flower_cards_current_player'] = CurrentFlowerCards::create($this->decks['flower_card'])->get('hand', $this->current_player_id);
         return $result;
     }
 
